@@ -24,8 +24,9 @@ class CustomTheme {
         brightness: Brightness.light,
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        centerTitle: true,
         elevation: 2,
       ),
       buttonTheme: const ButtonThemeData(
