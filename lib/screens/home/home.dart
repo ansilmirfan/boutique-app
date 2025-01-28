@@ -1,5 +1,7 @@
 import 'package:boutique_app/data/products.dart';
+import 'package:boutique_app/screens/home/widget/category_scroll_view.dart';
 import 'package:boutique_app/screens/home/widget/custom_card.dart';
+import 'package:boutique_app/screens/home/widget/custom_gridview.dart';
 import 'package:boutique_app/screens/home/widget/custom_text_field.dart';
 import 'package:boutique_app/widget/custom_cirlce_avathar.dart';
 import 'package:boutique_app/widget/elevated_icon.dart';
@@ -13,24 +15,29 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              searchAndFilter(),
-              const Gap(height: 20),
-              const CustomCard(
-                  imageUrl:
-                      "https://static.vecteezy.com/system/resources/previews/044/846/982/non_2x/beautiful-emotional-woman-enjoying-shopping-on-isolated-transparent-background-free-png.png",
-                  title: 'Big Sale',
-                  description:
-                      'Unbeatable discounts on all your favorite items')
-            ],
-          ),
+        child: Column(
+          children: [
+            searchAndFilter(),
+            const Gap(height: 10),
+            _offerCard(),
+            const Gap(height: 20),
+            const CategoryScrollView(),
+            const Gap(height: 20),
+            const CustomGridview(),
+          ],
         ),
       ),
     );
+  }
+
+  CustomCard _offerCard() {
+    return const CustomCard(
+        imageUrl:
+            "https://static.vecteezy.com/system/resources/previews/044/846/982/non_2x/beautiful-emotional-woman-enjoying-shopping-on-isolated-transparent-background-free-png.png",
+        title: 'Big Sale',
+        description: 'Unbeatable discounts on all your favorite items');
   }
 
   Row searchAndFilter() {
