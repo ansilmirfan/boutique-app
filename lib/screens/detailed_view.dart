@@ -1,6 +1,7 @@
 import 'package:boutique_app/data/products.dart';
 import 'package:boutique_app/widget/elevated_icon.dart';
 import 'package:boutique_app/widget/gap.dart';
+import 'package:boutique_app/widget/slide_animation.dart';
 import 'package:flutter/material.dart';
 
 class DetailedView extends StatelessWidget {
@@ -32,9 +33,12 @@ class DetailedView extends StatelessWidget {
       elevation: 0.0,
       leading: _popDownButton(context),
       actions: [
-        ElevatedIcon(
-          icon: Icons.favorite_outline,
-          onTap: () {},
+        SlideAnimation(
+          index: 2,
+          child: ElevatedIcon(
+            icon: Icons.favorite_outline,
+            onTap: () {},
+          ),
         ),
         Gap.width(width: 10),
       ],
@@ -45,9 +49,12 @@ class DetailedView extends StatelessWidget {
     return Row(
       children: [
         Gap.width(width: 10),
-        ElevatedIcon(
-          icon: Icons.arrow_back,
-          onTap: () => Navigator.of(context).pop(),
+        SlideAnimation(
+          index: 3,
+          child: ElevatedIcon(
+            icon: Icons.arrow_back,
+            onTap: () => Navigator.of(context).pop(),
+          ),
         ),
       ],
     );
@@ -58,41 +65,55 @@ class DetailedView extends StatelessWidget {
       children: [
         Gap.width(width: 20),
         Expanded(
-          child: FilledButton(
-            onPressed: () {},
-            style: const ButtonStyle(
-              minimumSize: WidgetStatePropertyAll(
-                Size(double.infinity, 60),
+          child: SlideAnimation(
+            index: 4,
+            child: FilledButton(
+              onPressed: () {},
+              style: const ButtonStyle(
+                minimumSize: WidgetStatePropertyAll(
+                  Size(double.infinity, 60),
+                ),
               ),
+              child: const Text('Buy Now'),
             ),
-            child: const Text('Buy Now'),
           ),
         ),
         Gap.width(width: 25),
-        const ElevatedIcon(
-          icon: Icons.shopping_cart,
-          height: 30,
+        const SlideAnimation(
+          index: 5,
+          child: ElevatedIcon(
+            icon: Icons.shopping_cart,
+            height: 30,
+          ),
         ),
         Gap.width(width: 25),
       ],
     );
   }
 
-  Padding _description() {
-    return const Padding(
-      padding: EdgeInsets.all(15),
-      child: Text(
-          "A stylish and versatile piece for your wardrobe, this denim jacket features a tailored fit and durable fabric. With adjustable cuffs and functional pockets, it's both practical and fashionable. Perfect for casual or evening wear, it pairs well with jeans or skirts for an effortlessly chic look."),
+  SlideAnimation _description() {
+    return const SlideAnimation(
+      index: 3,
+      child: Padding(
+        padding: EdgeInsets.all(15),
+        child: Text(
+            "A stylish and versatile piece for your wardrobe, this denim jacket features a tailored fit and durable fabric. With adjustable cuffs and functional pockets, it's both practical and fashionable. Perfect for casual or evening wear, it pairs well with jeans or skirts for an effortlessly chic look."),
+      ),
     );
   }
 
   ListTile _productDetailsTile(BuildContext context) {
     return ListTile(
-      title: const Text('Product Name'),
-      subtitle: const Text('Color'),
-      trailing: Text(
-        "\$55",
-        style: Theme.of(context).textTheme.labelLarge,
+      title: const SlideAnimation(
+        child: Text('Product Name'),
+      ),
+      subtitle: const SlideAnimation(index: 1, child: Text('Color')),
+      trailing: SlideAnimation(
+        index: 2,
+        child: Text(
+          "\$55",
+          style: Theme.of(context).textTheme.labelLarge,
+        ),
       ),
     );
   }

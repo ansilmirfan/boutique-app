@@ -6,6 +6,7 @@ import 'package:boutique_app/screens/home/widget/custom_text_field.dart';
 import 'package:boutique_app/widget/custom_cirlce_avathar.dart';
 import 'package:boutique_app/widget/elevated_icon.dart';
 import 'package:boutique_app/widget/gap.dart';
+import 'package:boutique_app/widget/slide_animation.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -44,14 +45,20 @@ class Home extends StatelessWidget {
     return Row(
       children: [
         const Expanded(
-          child: CustomTextField(),
+          child: SlideAnimation(
+            index: 0,
+            child: CustomTextField(),
+          ),
         ),
         Gap.width(
           width: 20,
         ),
-        const ElevatedIcon(
-          height: 25,
-          icon: Icons.filter_alt_outlined,
+        const SlideAnimation(
+          index: 1,
+          child: ElevatedIcon(
+            height: 25,
+            icon: Icons.filter_alt_outlined,
+          ),
         )
       ],
     );
